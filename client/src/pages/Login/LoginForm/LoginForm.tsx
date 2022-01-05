@@ -1,11 +1,10 @@
 import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 import { Formik, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import useStyles from './useStyles';
+import CustomTextField from '../../../components/AuthInput/CustomTextField';
 
 interface Props {
   handleSubmit: (
@@ -46,17 +45,10 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
     >
       {({ handleSubmit, handleChange, values, touched, errors, isSubmitting }) => (
         <form onSubmit={handleSubmit} className={classes.form} noValidate>
-          <TextField
+          <CustomTextField
             id="email"
-            label={<Typography className={classes.label}>E-mail address</Typography>}
-            fullWidth
+            label={'EMAIL ADDRESS'}
             margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            InputProps={{
-              classes: { input: classes.inputs },
-            }}
             name="email"
             autoComplete="email"
             autoFocus
@@ -64,20 +56,14 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
             error={touched.email && Boolean(errors.email)}
             value={values.email}
             onChange={handleChange}
+            placeholder="Your email"
           />
-          <TextField
+          <CustomTextField
             id="password"
-            label={<Typography className={classes.label}>Password</Typography>}
-            fullWidth
+            label={'PASSWORD'}
             margin="normal"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            InputProps={{
-              classes: { input: classes.inputs },
-              endAdornment: <Typography className={classes.forgot}>Forgot?</Typography>,
-            }}
             type="password"
+            placeholder="Enter a Password"
             autoComplete="current-password"
             helperText={touched.password ? errors.password : ''}
             error={touched.password && Boolean(errors.password)}
@@ -86,10 +72,9 @@ export default function Login({ handleSubmit }: Props): JSX.Element {
           />
           <Box textAlign="center" marginTop={5}>
             <Button type="submit" size="large" variant="contained" color="primary" className={classes.submit}>
-              {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'Login'}
+              {isSubmitting ? <CircularProgress style={{ color: 'white' }} /> : 'LOGIN'}
             </Button>
           </Box>
-          <Box height={95} />
         </form>
       )}
     </Formik>
