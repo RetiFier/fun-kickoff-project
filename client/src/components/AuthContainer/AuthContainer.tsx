@@ -2,7 +2,7 @@ import { Box, Grid, Paper } from '@mui/material';
 import useStyles from './useStyles';
 
 type Props = {
-  children: JSX.Element | JSX.Element[] | string | string[];
+  children: JSX.Element;
 };
 
 const AuthContainer = ({ children }: Props): JSX.Element => {
