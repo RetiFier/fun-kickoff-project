@@ -14,10 +14,15 @@ const profileSchema = new mongoose.Schema({
    type: String,
    trim:true
  },
- gender:{
-   type: String ,
-   trim: true
- },
+ gender: {
+  type: String,
+  enum: {
+      values: ['male', 'female', 'other'],
+      message: 'Please enter a valid gender'
+  },
+  lowercase: true,
+  trim: true
+},
  dateOfBirth: {
   type: Date,
   required: true,
@@ -33,14 +38,7 @@ phone: {
     message: '{VALUE} is not a valid 10 digit number!'
   }
 },
-description:{
-  type: String,
-  trim:true
-},
- availability:{
-   date: Date,
-   time: [{from: Number, to: Number}]
- } ,
+availability : { type: Schema.Types.ObjectId, ref: 'Availability' },
  user: { type: Schema.Types.ObjectId, ref: 'User' }
 },{ timestamps: true })
 module.exports = Profile = mongoose.model("profile", profileSchema);
