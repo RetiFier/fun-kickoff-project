@@ -12,9 +12,7 @@ const GuestMenu = ({}: Props): JSX.Element => {
   return (
     <Box justifyContent={'center'}>
       <Link to={'/'} className={classes.linkBtn}>
-        <Typography display={'inline'} fontWeight={800} fontSize={11}>
-          BECOME A SITTER
-        </Typography>
+        <Typography sx={{ display: 'inline', fontWeight: 800, fontSize: 11 }}>BECOME A SITTER</Typography>
       </Link>
       <Button
         type="submit"
