@@ -22,6 +22,15 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+// Populate Virtuals
+userSchema.virtual('profile', {
+  ref: 'Profile',
+  localField: '_id',
+  foreignField: 'user',
+  justOne: true
+})
+
+
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
