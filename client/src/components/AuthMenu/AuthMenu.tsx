@@ -1,24 +1,16 @@
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import { useAuth } from '../../context/useAuthContext';
-import { ListItemIcon, ListItemText } from '@mui/material';
-import { Person as ProfileIcon, Logout as LogoutIcon } from '@mui/icons-material';
-import { User } from '../../interface/User';
-import AvatarDisplay from '../AvatarDisplay/AvatarDisplay';
 
-interface Props {
-  loggedIn: boolean;
-  userInfo: User;
-}
-
-const AuthMenu = ({ userInfo }: Props): JSX.Element => {
+const AuthMenu = (): JSX.Element => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const { logout } = useAuth();
 
-  const handleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (event: MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -32,46 +24,24 @@ const AuthMenu = ({ userInfo }: Props): JSX.Element => {
   };
 
   return (
-    <>
-      <IconButton
-        size="large"
-        aria-label="account of current user"
-        aria-controls="menu-appbar"
-        aria-haspopup="true"
-        onClick={handleMenuOpen}
-        color="inherit"
-      >
-        <AvatarDisplay user={userInfo} loggedIn={true} />
+    <div>
+      <IconButton aria-label="show auth menu" aria-controls="auth-menu" aria-haspopup="true" onClick={handleClick}>
+        <MoreHorizIcon />
       </IconButton>
       <Menu
-        id="menu-appbar"
+        id="auth-menu"
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
         keepMounted
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
         open={open}
         onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
       >
-        <MenuItem onClick={handleClose}>
-          <ListItemIcon>
-            <ProfileIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Go to Profile</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={handleLogout}>
-          <ListItemIcon>
-            <LogoutIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText>Logout</ListItemText>
-        </MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
-    </>
+    </div>
   );
 };
 
