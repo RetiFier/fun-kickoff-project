@@ -12,7 +12,8 @@ export const theme = createTheme({
   },
   palette: {
     primary: { main: '#f14140' },
-    secondary: { main: '#fafafb' },
+    secondary: { main: '#FFF' },
+    background: { default: '#fafafb' },
   },
 
   shape: {
