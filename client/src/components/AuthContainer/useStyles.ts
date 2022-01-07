@@ -1,12 +1,10 @@
-import { Theme } from '@mui/material/styles';
 import { makeStyles } from '@mui/styles';
 
-const useStyles = makeStyles((theme: Theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     minHeight: '100vh',
     height: '100%',
     justifyContent: 'center',
-    backgroundColor: theme.palette.secondary.main,
     '& .MuiInput-underline:before': {
       borderBottom: '1.2px solid rgba(0, 0, 0, 0.2)',
     },
