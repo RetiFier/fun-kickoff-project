@@ -38,7 +38,24 @@ phone: {
     message: '{VALUE} is not a valid 10 digit number!'
   }
 },
-availability : { type: Schema.Types.ObjectId, ref: 'Availability' },
+availability : {
+  availabilityDays: {
+    type: Array
+  },
+  availabilityDates: [{
+    day: {
+      type: Date,
+    },
+    periods: [{
+      start: Date,
+      end:  Date
+      }],
+      available:{
+        type:Boolean,
+        default: false 
+      } 
+  }]
+},
  user: { type: Schema.Types.ObjectId, ref: 'User' }
 },{ timestamps: true })
 module.exports = Profile = mongoose.model("profile", profileSchema);
