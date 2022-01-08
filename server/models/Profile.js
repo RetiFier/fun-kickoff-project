@@ -43,12 +43,12 @@ availability : {
     type: Array
   },
   availabilityDates: [{
-    day: {
+    date: {
       type: Date,
     },
     periods: [{
-      start: Date,
-      end:  Date
+      start: String,
+      end:  String
       }],
       available:{
         type:Boolean,
@@ -56,6 +56,6 @@ availability : {
       } 
   }]
 },
- user: { type: Schema.Types.ObjectId, ref: 'User' }
+ user: { type: mongoose.Schema.Types.ObjectId, ref: 'user' }
 },{ timestamps: true })
 module.exports = Profile = mongoose.model("profile", profileSchema);
