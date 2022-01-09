@@ -12,7 +12,6 @@ const ProfileLink = ({ linkTo, linkText }: Props): JSX.Element => {
   const [selectedLink, setSelectedLink] = useState(`/${linkTo}`);
   const history = useHistory();
   const location = useLocation();
-  console.log(location.pathname);
   const handleListItemClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, linkTo: string) => {
     const link = `/${linkTo}`;
     setSelectedLink(link);

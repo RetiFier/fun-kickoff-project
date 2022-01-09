@@ -7,11 +7,13 @@ type Props = {
   title: string;
 };
 
-const ProfileContent = ({ title }: Props): JSX.Element => {
+const ProfileContent = ({ title, children }: Props): JSX.Element => {
   return (
     <ProfileContentContainer>
-      <Box width="100%" maxWidth={450} p={3} alignSelf="center">
+      <Box sx={{ width: '80%', p: 5 }} alignSelf="center">
         <AuthTitle title={title} />
+
+        {children}
       </Box>
     </ProfileContentContainer>
   );

@@ -2,7 +2,6 @@ import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles(() => ({
   root: {
-    minHeight: '100vh',
     height: '100%',
     justifyContent: 'center',
     '& .MuiInput-underline:before': {
@@ -10,7 +9,7 @@ const useStyles = makeStyles(() => ({
     },
   },
   profileContainer: {
-    maxHeight: '650px',
+    // maxHeight: '950px',
     height: '100%',
   },
 }));

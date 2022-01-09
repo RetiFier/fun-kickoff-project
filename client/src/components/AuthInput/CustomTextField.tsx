@@ -2,15 +2,17 @@ import { InputLabel, TextField, Typography, Box } from '@mui/material';
 import useStyles from './useStyles';
 interface Props {
   id: string;
-  label: string;
+  label?: string;
   margin?: 'dense' | 'normal' | 'none';
   name?: string;
-  autoComplete: string;
+  autoComplete?: string;
   helperText?: React.ReactNode;
   error?: boolean;
   value?: string;
   placeholder: string;
   autoFocus?: boolean;
+  multiline?: boolean;
+  rows?: number;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   type?: React.InputHTMLAttributes<unknown>['type'];
 }
@@ -28,16 +30,20 @@ const CustomTextField = ({
   type,
   autoFocus,
   placeholder,
+  multiline,
+  rows,
 }: Props): JSX.Element => {
   const classes = useStyles();
 
   return (
     <Box marginBottom={'5px'}>
-      <InputLabel htmlFor={id} classes={{ root: classes.label }}>
-        <Typography fontSize={10} fontWeight={800} className={classes.labelText}>
-          {label}
-        </Typography>
-      </InputLabel>
+      {label && (
+        <InputLabel htmlFor={id} classes={{ root: classes.label }}>
+          <Typography fontSize={10} fontWeight={800} className={classes.labelText}>
+            {label}
+          </Typography>
+        </InputLabel>
+      )}
       <TextField
         id={id}
         fullWidth
@@ -54,6 +60,8 @@ const CustomTextField = ({
         placeholder={placeholder}
         autoFocus={autoFocus}
         type={type}
+        multiline={multiline}
+        rows={rows}
       />
     </Box>
   );
