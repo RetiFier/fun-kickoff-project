@@ -1,5 +1,4 @@
 const Profile =  require('../models/Profile')
-const User = require('../models/User')
 const asyncHandler = require("express-async-handler");
 
 exports.createProfile = asyncHandler(async (req, res, next) => {
