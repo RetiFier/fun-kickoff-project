@@ -6,8 +6,8 @@ exports.createProfile = asyncHandler(async (req, res, next) => {
 
 const {firstName , lastName , description , gender , dateOfBirth , phone ,availability } = req.body
   const {id} = req.user
-  const findUserId = await Profile.findOne({ user: id });
-  if(findUserId){
+  const profileExists = await Profile.findOne({ user: id });
+  if(profileExists){
     res.status(400);
     throw new Error("this user already created the  profile")
   }
@@ -41,17 +41,10 @@ const {firstName , lastName , description , gender , dateOfBirth , phone ,availa
 
 exports.editProfile = asyncHandler(async (req, res, next) => {
 
-  const {firstName , lastName , description , gender , dateOfBirth , phone , availability} = req.body
-
+  const {firstName, lastName, description, gender, dateOfBirth, phone, availability } = req.body
     const {id} = req.params
-    const findProfileId = await Profile.findById(id)
-
-    if(!req.body){
-      res.status(400);
-      throw new Error("Data cannont be empty")
-    }
-
-    if(findProfileId){
+    const profile  = await Profile.findById(id)
+    if(profile){
       const opts = { runValidators: true };
       const profile = await Profile.findByIdAndUpdate(
         id,
@@ -77,7 +70,7 @@ exports.editProfile = asyncHandler(async (req, res, next) => {
         throw new Error("Invalid Profile Data");
       }
     } else {
-      res.status(400);
+      res.status(404);
       throw new Error("Pls enter valid profile id");
     }
   
@@ -94,7 +87,7 @@ exports.loadProfile = asyncHandler(async (req, res, next) => {
           }
         });
       } else {
-        res.status(400);
+        res.status(404);
         throw new Error("Pls enter valid profile id");
       }   
     });
@@ -118,7 +111,7 @@ exports.deleteProfile = asyncHandler(async (req, res, next) => {
         }
    
       } else {
-        res.status(400);
+        res.status(404);
         throw new Error("Pls enter valid profile id");
       }   
     });
@@ -132,7 +125,7 @@ exports.loadAllProfile = asyncHandler(async (req, res, next) => {
           }
         });
       } else {
-        res.status(400);
+        res.status(404);
         throw new Error("Pls enter valid profile id");
       }   
     });
