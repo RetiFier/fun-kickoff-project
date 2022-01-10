@@ -41,7 +41,7 @@ const {firstName , lastName , description , gender , dateOfBirth , phone ,availa
 
 exports.editProfile = asyncHandler(async (req, res, next) => {
 
-  const {firstName, lastName, description, gender, dateOfBirth, phone, availability } = req.body
+  const {firstName, lastName, description, gender, dateOfBirth, phone, availability} = req.body
     const {id} = req.params
     const profile  = await Profile.findById(id)
     if(profile){
