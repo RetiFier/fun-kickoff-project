@@ -11,7 +11,7 @@ exports.searchUsers = asyncHandler(async (req, res, next) => {
   if (searchString) {
     users = await User.find({
       username: { $regex: searchString, $options: "i" }
-    });
+    }).populate('profile');
   }
 
   if (!users) {

@@ -19,8 +19,19 @@ const userSchema = new mongoose.Schema({
   register_date: {
     type: Date,
     default: Date.now
-  }
-});
+  },
+
+
+}, { timestamps: true, toJSON: { virtuals: true } })
+
+// Populate Virtuals
+userSchema.virtual('profile', {
+  ref: 'profile',
+  localField: '_id',
+  foreignField: 'user',
+  justOne: true
+})
+
 
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
