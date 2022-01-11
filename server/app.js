@@ -11,9 +11,15 @@ const logger = require("morgan");
 
 const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
+
 const profileRouter = require("./routes/profile")
+
+const dotenv = require("dotenv");
+
 const { json, urlencoded } = express;
 
+
+dotenv.config();
 connectDB();
 const app = express();
 const server = http.createServer(app);
