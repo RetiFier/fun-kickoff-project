@@ -5,6 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import { useAuth } from '../../context/useAuthContext';
 import { ListItemIcon, ListItemText } from '@mui/material';
 import { Person as ProfileIcon, Logout as LogoutIcon } from '@mui/icons-material';
+import { useHistory } from 'react-router-dom';
 import { User } from '../../interface/User';
 import AvatarDisplay from '../AvatarDisplay/AvatarDisplay';
 
@@ -14,6 +15,7 @@ interface Props {
 }
 
 const AuthMenu = ({ userInfo }: Props): JSX.Element => {
+  const history = useHistory();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const { logout } = useAuth();
@@ -25,7 +27,9 @@ const AuthMenu = ({ userInfo }: Props): JSX.Element => {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
+  const redirectProfile = () => {
+    history.push('/edit-profile');
+  };
   const handleLogout = () => {
     handleClose();
     logout();
@@ -62,7 +66,7 @@ const AuthMenu = ({ userInfo }: Props): JSX.Element => {
           <ListItemIcon>
             <ProfileIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Go to Profile</ListItemText>
+          <ListItemText onClick={redirectProfile}>Go to Profile</ListItemText>
         </MenuItem>
         <MenuItem onClick={handleLogout}>
           <ListItemIcon>
