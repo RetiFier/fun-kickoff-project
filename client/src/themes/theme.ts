@@ -20,4 +20,17 @@ export const theme = createTheme({
     borderRadius: 5,
   },
   spacing: 6,
+
+  components: {
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&.Mui-selected': {
+            color: 'black',
+            backgroundColor: 'transparent',
+          },
+        },
+      },
+    },
+  },
 });
