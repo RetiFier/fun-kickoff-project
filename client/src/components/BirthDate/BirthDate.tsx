@@ -17,21 +17,9 @@ const BirthDate = (): JSX.Element => {
   const getYear = new Date().getFullYear();
   // To Get Years
   const getYears = Array.from(new Array(100), (val, index) => getYear - index);
-  const getMonth = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-
+  const getMonth = Array.from(new Array(11), (val, index) =>
+    new Date(0, index).toLocaleString('en', { month: 'long' }),
+  );
   const getDays = Array.from(new Array(31), (val, index) => index + 1);
 
   return (

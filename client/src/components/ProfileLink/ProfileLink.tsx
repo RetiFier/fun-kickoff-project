@@ -9,24 +9,22 @@ interface Props {
 }
 
 const ProfileLink = ({ linkTo, linkText }: Props): JSX.Element => {
-  const [selectedLink, setSelectedLink] = useState(`/${linkTo}`);
+  const [selectedLink, setSelectedLink] = useState(`/settings/${linkTo}`);
   const history = useHistory();
   const location = useLocation();
   const handleListItemClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>, linkTo: string) => {
-    const link = `/${linkTo}`;
+    const link = `/settings/${linkTo}`;
     setSelectedLink(link);
     history.push(link);
   };
   return (
     <List>
       <ListItemButton
-        // underline="none"
         sx={{
           fontSize: 14,
           fontWeight: 500,
           color: 'gray',
         }}
-        // color="gray"
         selected={selectedLink === location.pathname}
         onClick={(event) => handleListItemClick(event, linkTo)}
       >

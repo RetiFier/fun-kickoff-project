@@ -28,7 +28,7 @@ const AuthMenu = ({ userInfo }: Props): JSX.Element => {
     setAnchorEl(null);
   };
   const redirectProfile = () => {
-    history.push('/edit-profile');
+    history.push('/settings/edit-profile');
   };
   const handleLogout = () => {
     handleClose();
